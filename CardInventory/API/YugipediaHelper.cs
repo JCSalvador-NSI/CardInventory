@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CardInventory.Entity;
+using CardInventory.Utils;
 using HtmlAgilityPack;
 
 namespace CardInventory.API
@@ -32,7 +33,7 @@ namespace CardInventory.API
                     {
                         if (nodeCard.HasChildNodes)
                         {
-                            Console.WriteLine("New node.");
+                            Logger.PrintDebug("New node.");
                             var nodeCardBodies = nodeCard.ChildNodes;
                             if (nodeCardBodies != null)
                             {
@@ -51,10 +52,10 @@ namespace CardInventory.API
                                         var newCardItem = new Card(cardSetcode, cardName, cardJapName, cardRarity, cardCategory);
                                         results.Add(newCardItem);
                                     }
-                                    Console.WriteLine($@"
+                                    Logger.PrintDebug($@"
                                         Card Set : { cardSetcode }
                                         Card Rarities : { string.Join(", ", nodeRarities.Select(x => x.InnerText)) }
-                                    ".Replace("                                    ", ""));
+                                    ");
                                 }
                             }
                         }

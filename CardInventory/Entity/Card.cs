@@ -21,6 +21,7 @@ namespace CardInventory.Entity
             Rarity = _rarity;
             Category = _category;
             Quantity = 0;
+            QtyModifier = 0;
         }
 
         public string SetCode { get; set; }
@@ -29,5 +30,6 @@ namespace CardInventory.Entity
         public string Rarity { get; set; }
         public string Category { get; set; }
         public int Quantity { get; set; }
+        public int QtyModifier { get; set; }
     }
 }

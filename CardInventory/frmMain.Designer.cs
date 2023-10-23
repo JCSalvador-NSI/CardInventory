@@ -142,6 +142,7 @@ namespace CardInventory
             this.dgvCardList.Name = "dgvCardList";
             this.dgvCardList.Size = new System.Drawing.Size(989, 432);
             this.dgvCardList.TabIndex = 1;
+            this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
             // 
             // frmMain
             // 

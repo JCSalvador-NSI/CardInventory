@@ -31,18 +31,18 @@ namespace CardInventory
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutCardList = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvCardList = new System.Windows.Forms.DataGridView();
             this.flowWikiURL = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtWikiURL = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutCardList = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvCardList = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.flowWikiURL.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).BeginInit();
+            this.flowWikiURL.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,6 +67,34 @@ namespace CardInventory
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutCardList
+            // 
+            this.tableLayoutCardList.ColumnCount = 1;
+            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.Controls.Add(this.dgvCardList, 0, 0);
+            this.tableLayoutCardList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutCardList.Location = new System.Drawing.Point(3, 54);
+            this.tableLayoutCardList.Name = "tableLayoutCardList";
+            this.tableLayoutCardList.RowCount = 1;
+            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.Size = new System.Drawing.Size(995, 444);
+            this.tableLayoutCardList.TabIndex = 1;
+            // 
+            // dgvCardList
+            // 
+            this.dgvCardList.AllowUserToAddRows = false;
+            this.dgvCardList.AllowUserToDeleteRows = false;
+            this.dgvCardList.AllowUserToOrderColumns = true;
+            this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCardList.Location = new System.Drawing.Point(3, 3);
+            this.dgvCardList.Name = "dgvCardList";
+            this.dgvCardList.Size = new System.Drawing.Size(989, 438);
+            this.dgvCardList.TabIndex = 1;
+            this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
             // 
             // flowWikiURL
             // 
@@ -116,34 +144,6 @@ namespace CardInventory
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutCardList
-            // 
-            this.tableLayoutCardList.ColumnCount = 1;
-            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.Controls.Add(this.dgvCardList, 0, 0);
-            this.tableLayoutCardList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutCardList.Location = new System.Drawing.Point(3, 60);
-            this.tableLayoutCardList.Name = "tableLayoutCardList";
-            this.tableLayoutCardList.RowCount = 1;
-            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.Size = new System.Drawing.Size(995, 438);
-            this.tableLayoutCardList.TabIndex = 1;
-            // 
-            // dgvCardList
-            // 
-            this.dgvCardList.AllowUserToAddRows = false;
-            this.dgvCardList.AllowUserToDeleteRows = false;
-            this.dgvCardList.AllowUserToOrderColumns = true;
-            this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCardList.Location = new System.Drawing.Point(3, 3);
-            this.dgvCardList.Name = "dgvCardList";
-            this.dgvCardList.Size = new System.Drawing.Size(989, 432);
-            this.dgvCardList.TabIndex = 1;
-            this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -157,10 +157,10 @@ namespace CardInventory
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.flowWikiURL.ResumeLayout(false);
-            this.flowWikiURL.PerformLayout();
             this.tableLayoutCardList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).EndInit();
+            this.flowWikiURL.ResumeLayout(false);
+            this.flowWikiURL.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -62,7 +62,15 @@ namespace CardInventory
 
         private async void btnProcess_Click(object sender, EventArgs e)
         {
-            await YugipediaHelper.FetchList(txtWikiURL.Text);
+            var cardlist = await YugipediaHelper.FetchList(txtWikiURL.Text);
+            if (cardlist != null && cardlist.Count > 0)
+            {
+                foreach (Card item in cardlist)
+                {
+                    cardList.Add(item);
+                }
+                MessageBox.Show("loaded!");
+            }
         }
 
         private void dgvCardList_CellContentClick(object sender, DataGridViewCellEventArgs e)

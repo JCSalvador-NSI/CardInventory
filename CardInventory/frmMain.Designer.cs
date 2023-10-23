@@ -133,6 +133,9 @@ namespace CardInventory
             // 
             // dgvCardList
             // 
+            this.dgvCardList.AllowUserToAddRows = false;
+            this.dgvCardList.AllowUserToDeleteRows = false;
+            this.dgvCardList.AllowUserToOrderColumns = true;
             this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCardList.Location = new System.Drawing.Point(3, 3);

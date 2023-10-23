@@ -13,9 +13,20 @@ namespace CardInventory.Entity
             //
         }
 
+        public Card(string _setcode, string _name, string _japname, string _rarity, string _category)
+        {
+            SetCode = _setcode;
+            Name = _name;
+            JapaneseName = _japname;
+            Rarity = _rarity;
+            Category = _category;
+        }
+
         public string SetCode { get; set; }
         public string Name { get; set; }
+        public string JapaneseName { get; set; }
         public string Rarity { get; set; }
+        public string Category { get; set; }
         public int Quantity { get; set; }
     }
 }

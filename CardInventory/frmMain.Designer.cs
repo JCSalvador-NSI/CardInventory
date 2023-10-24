@@ -87,7 +87,6 @@ namespace CardInventory
             // 
             this.dgvCardList.AllowUserToAddRows = false;
             this.dgvCardList.AllowUserToDeleteRows = false;
-            this.dgvCardList.AllowUserToOrderColumns = true;
             this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCardList.Location = new System.Drawing.Point(3, 3);
@@ -150,6 +149,7 @@ namespace CardInventory
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 539);
             this.Controls.Add(this.tabControl1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmMain";

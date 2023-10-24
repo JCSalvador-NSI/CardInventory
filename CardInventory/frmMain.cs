@@ -62,10 +62,10 @@ namespace CardInventory
 
         private async void btnProcess_Click(object sender, EventArgs e)
         {
-            var cardlist = await YugipediaHelper.FetchList(txtWikiURL.Text);
-            if (cardlist != null && cardlist.Count > 0)
+            var list = await YugipediaHelper.FetchList(txtWikiURL.Text);
+            if (list != null && list.Count > 0)
             {
-                foreach (Card item in cardlist)
+                foreach (Card item in list)
                 {
                     cardList.Add(item);
                 }
@@ -75,13 +75,24 @@ namespace CardInventory
 
         private void dgvCardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var colQtyAdd = dgvCardList.Columns[INDEX_QTY_ADD];
-            var colQtyRemove = dgvCardList.Columns[INDEX_QTY_REMOVE];
-            if (colQtyAdd != null && e.ColumnIndex == colQtyAdd.Index)
-                MessageBox.Show("Add clicked.");
+            var sender_grid = (DataGridView)sender;
 
-            if (colQtyRemove != null && e.ColumnIndex == colQtyRemove.Index)
-                MessageBox.Show("Removed clicked.");
+            if (sender_grid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                var card_data = (Card)dgvCardList.Rows[e.RowIndex].DataBoundItem;
+                var col_qty_add = dgvCardList.Columns[INDEX_QTY_ADD];
+                var col_qty_remove = dgvCardList.Columns[INDEX_QTY_REMOVE];
+                string card_name = "";
+
+                if (card_data != null)
+                    card_name = card_data.Name;
+
+                if (col_qty_add != null && e.ColumnIndex == col_qty_add.Index)
+                    MessageBox.Show($"Add qty to { card_name }");
+
+                if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
+                    MessageBox.Show($"Removed qty to { card_name }");
+            }   
         }
     }
 }

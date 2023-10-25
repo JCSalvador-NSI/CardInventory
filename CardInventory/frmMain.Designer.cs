@@ -31,20 +31,20 @@ namespace CardInventory
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCardList = new System.Windows.Forms.TabPage();
+            this.tableLayoutCardList = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvCardList = new System.Windows.Forms.DataGridView();
             this.tableLayoutControls = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtWikiURL = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
-            this.tableLayoutCardList = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvCardList = new System.Windows.Forms.DataGridView();
             this.tabInventory = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabCardList.SuspendLayout();
-            this.tableLayoutControls.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).BeginInit();
+            this.tableLayoutControls.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,6 +69,36 @@ namespace CardInventory
             this.tabCardList.TabIndex = 0;
             this.tabCardList.Text = "Card List";
             this.tabCardList.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutCardList
+            // 
+            this.tableLayoutCardList.ColumnCount = 1;
+            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.Controls.Add(this.dgvCardList, 0, 0);
+            this.tableLayoutCardList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutCardList.Location = new System.Drawing.Point(3, 96);
+            this.tableLayoutCardList.Name = "tableLayoutCardList";
+            this.tableLayoutCardList.RowCount = 1;
+            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutCardList.Size = new System.Drawing.Size(1134, 402);
+            this.tableLayoutCardList.TabIndex = 1;
+            // 
+            // dgvCardList
+            // 
+            this.dgvCardList.AllowUserToAddRows = false;
+            this.dgvCardList.AllowUserToDeleteRows = false;
+            this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCardList.Location = new System.Drawing.Point(3, 3);
+            this.dgvCardList.Name = "dgvCardList";
+            this.dgvCardList.RowHeadersVisible = false;
+            this.dgvCardList.Size = new System.Drawing.Size(1128, 396);
+            this.dgvCardList.TabIndex = 1;
+            this.dgvCardList.VirtualMode = true;
+            this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
+            this.dgvCardList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvCardList_RowPrePaint);
             // 
             // tableLayoutControls
             // 
@@ -124,36 +154,6 @@ namespace CardInventory
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
-            // tableLayoutCardList
-            // 
-            this.tableLayoutCardList.ColumnCount = 1;
-            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.Controls.Add(this.dgvCardList, 0, 0);
-            this.tableLayoutCardList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutCardList.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutCardList.Name = "tableLayoutCardList";
-            this.tableLayoutCardList.RowCount = 1;
-            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.Size = new System.Drawing.Size(1134, 495);
-            this.tableLayoutCardList.TabIndex = 1;
-            // 
-            // dgvCardList
-            // 
-            this.dgvCardList.AllowUserToAddRows = false;
-            this.dgvCardList.AllowUserToDeleteRows = false;
-            this.dgvCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCardList.Location = new System.Drawing.Point(3, 3);
-            this.dgvCardList.Name = "dgvCardList";
-            this.dgvCardList.RowHeadersVisible = false;
-            this.dgvCardList.Size = new System.Drawing.Size(1128, 489);
-            this.dgvCardList.TabIndex = 1;
-            this.dgvCardList.VirtualMode = true;
-            this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
-            this.dgvCardList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvCardList_RowPrePaint);
-            // 
             // tabInventory
             // 
             this.tabInventory.Location = new System.Drawing.Point(4, 34);
@@ -174,16 +174,16 @@ namespace CardInventory
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.Text = "MainApp";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabCardList.ResumeLayout(false);
+            this.tableLayoutCardList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).EndInit();
             this.tableLayoutControls.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.tableLayoutCardList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -25,6 +25,7 @@ namespace CardInventory
         public frmMain()
         {
             InitializeComponent();
+            this.Text = @"TCG Card Inventory";
         }
 
         private void ResizeDgvCardList()

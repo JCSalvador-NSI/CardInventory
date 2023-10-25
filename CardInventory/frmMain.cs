@@ -85,7 +85,7 @@ namespace CardInventory
             dgvCardList.Columns[nameof(Card.JapaneseName)].HeaderText = "OCG Name";
 
             // Increase row height
-            dgvCardList.RowTemplate.Height += 7;
+            dgvCardList.RowTemplate.Height += 10;
 
             //cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));
             ResizeDgvCardList();

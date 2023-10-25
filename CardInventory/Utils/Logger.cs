@@ -10,7 +10,7 @@ namespace CardInventory.Utils
     {
         public static void PrintDebug(string _content)
         {
-            string content = _content.Replace("\t\t\t\t", "");
+            string content = _content.Replace("\t\t\t\t\t\t\t\t\t\t\t\t\t", "");
             Console.WriteLine(content);
         }
     }

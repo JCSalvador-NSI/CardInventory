@@ -15,8 +15,9 @@ namespace CardInventory
     public partial class frmMain : Form
     {
         // Constants
-        private const string INDEX_QTY_ADD = "colAdd";
-        private const string INDEX_QTY_REMOVE = "colRemove";
+        private const string INDEX_QTY_ADD = "colQtyAdd";
+        private const string INDEX_QTY_REMOVE = "colQtyRemove";
+        private const string INDEX_QTY_SAVE = "colQtySave";
         private const string INDEX_QTY_MODIFIER = nameof(Card.QtyModifier);
         private const string INDEX_QTY = nameof(Card.Quantity);
         // Local scope variables
@@ -37,6 +38,7 @@ namespace CardInventory
             {
                 Tuple.Create(INDEX_QTY_ADD, "Add", "+"),
                 Tuple.Create(INDEX_QTY_REMOVE, "Remove", "-"),
+                Tuple.Create(INDEX_QTY_SAVE, "Action", "SAVE"),
             };
             
             foreach (var pair in dictQtyModifier)
@@ -57,7 +59,7 @@ namespace CardInventory
             dgvCardList.Columns[INDEX_QTY_MODIFIER].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[INDEX_QTY].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));
+            //cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));
         }
 
         private async void btnProcess_Click(object sender, EventArgs e)
@@ -82,16 +84,32 @@ namespace CardInventory
                 var card_data = (Card)dgvCardList.Rows[e.RowIndex].DataBoundItem;
                 var col_qty_add = dgvCardList.Columns[INDEX_QTY_ADD];
                 var col_qty_remove = dgvCardList.Columns[INDEX_QTY_REMOVE];
-                string card_name = "";
+                var col_qty_save = dgvCardList.Columns[INDEX_QTY_SAVE];
 
                 if (card_data != null)
-                    card_name = card_data.Name;
+                {
+                    string card_name = card_data.Name;
 
-                if (col_qty_add != null && e.ColumnIndex == col_qty_add.Index)
-                    MessageBox.Show($"Add qty to { card_name }");
-
-                if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
-                    MessageBox.Show($"Removed qty to { card_name }");
+                    if (col_qty_add != null && e.ColumnIndex == col_qty_add.Index)
+                    {
+                        card_data.QtyModifier += 1;
+                        sender_grid.Refresh();
+                        MessageBox.Show($"Add qty to { card_name }");
+                    }
+                    if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
+                    {
+                        card_data.QtyModifier -= 1;
+                        sender_grid.Refresh();
+                        MessageBox.Show($"Removed qty to { card_name }");
+                    }
+                    if (col_qty_save != null && e.ColumnIndex == col_qty_save.Index)
+                    {
+                        card_data.Quantity += card_data.QtyModifier;
+                        card_data.QtyModifier = 0;
+                        sender_grid.Refresh();
+                        MessageBox.Show($"New quantity saved for { card_name }");
+                    }
+                }
             }   
         }
     }

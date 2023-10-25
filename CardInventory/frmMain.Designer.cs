@@ -30,16 +30,16 @@ namespace CardInventory
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabCardList = new System.Windows.Forms.TabPage();
             this.tableLayoutCardList = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCardList = new System.Windows.Forms.DataGridView();
             this.flowWikiURL = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtWikiURL = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabInventory = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabCardList.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).BeginInit();
             this.flowWikiURL.SuspendLayout();
@@ -47,8 +47,8 @@ namespace CardInventory
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabCardList);
+            this.tabControl1.Controls.Add(this.tabInventory);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -56,17 +56,17 @@ namespace CardInventory
             this.tabControl1.Size = new System.Drawing.Size(1148, 539);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabCardList
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutCardList);
-            this.tabPage1.Controls.Add(this.flowWikiURL);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1140, 501);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabCardList.Controls.Add(this.tableLayoutCardList);
+            this.tabCardList.Controls.Add(this.flowWikiURL);
+            this.tabCardList.Location = new System.Drawing.Point(4, 34);
+            this.tabCardList.Name = "tabCardList";
+            this.tabCardList.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCardList.Size = new System.Drawing.Size(1140, 501);
+            this.tabCardList.TabIndex = 0;
+            this.tabCardList.Text = "Card List";
+            this.tabCardList.UseVisualStyleBackColor = true;
             // 
             // tableLayoutCardList
             // 
@@ -136,15 +136,15 @@ namespace CardInventory
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
-            // tabPage2
+            // tabInventory
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1001, 501);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabInventory.Location = new System.Drawing.Point(4, 34);
+            this.tabInventory.Name = "tabInventory";
+            this.tabInventory.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInventory.Size = new System.Drawing.Size(1140, 501);
+            this.tabInventory.TabIndex = 1;
+            this.tabInventory.Text = "Inventory";
+            this.tabInventory.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -160,7 +160,7 @@ namespace CardInventory
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabCardList.ResumeLayout(false);
             this.tableLayoutCardList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).EndInit();
             this.flowWikiURL.ResumeLayout(false);
@@ -172,8 +172,8 @@ namespace CardInventory
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabCardList;
+        private System.Windows.Forms.TabPage tabInventory;
         private System.Windows.Forms.FlowLayoutPanel flowWikiURL;
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.TextBox txtWikiURL;

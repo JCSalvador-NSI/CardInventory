@@ -36,8 +36,8 @@ namespace CardInventory
             dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * 0.15);
             dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * 0.11);
             dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * 0.1);
-            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * 0.05);
-            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[INDEX_QTY].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[INDEX_QTY_MODIFIER].Width = Convert.ToInt32(dgv_width * 0.05);
             dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * 0.05);
             dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * 0.05);
             dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * 0.08);
@@ -72,12 +72,15 @@ namespace CardInventory
             }
 
             // Change header text and alignments
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderText = "Modifier";
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[INDEX_QTY].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[INDEX_QTY_MODIFIER].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvCardList.Columns[INDEX_QTY].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             dgvCardList.Columns[nameof(Card.SetCode)].HeaderText = "Code";
-            dgvCardList.Columns[nameof(Card.Quantity)].HeaderText = "#";
-            dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderText = "±";
+            dgvCardList.Columns[INDEX_QTY].HeaderText = "#";
+            dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderText = "±";
             dgvCardList.Columns[nameof(Card.JapaneseName)].HeaderText = "OCG Name";
 
             //Increase row height

@@ -11,6 +11,20 @@ namespace CardInventory.API
 {
     public static class YugipediaHelper
     {
+        public static string LINK_WIKI = @"https://yugipedia.com/wiki/";
+        public static string PREFIX_CARDLIST = @"Set_Card_Lists:";
+
+        public static string SanitizeUrl(string _source)
+        {
+            if (string.IsNullOrWhiteSpace(_source))
+                throw new Exception($"{ nameof(YugipediaHelper) } - Invalid URL, Blank or null.");
+
+            string main_list = _source.Substring(LINK_WIKI.Length);
+            if (main_list.StartsWith(PREFIX_CARDLIST) == false)
+                return $"{ LINK_WIKI }{ PREFIX_CARDLIST }{ main_list }_(OCG-JP)";
+
+            return _source;
+        }
         public static async Task<List<Card>> FetchList(string _url)
         {
             int INDEX_SETCODE = 0;

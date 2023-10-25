@@ -30,8 +30,9 @@ namespace CardInventory
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            txtWikiURL.Text = @"https://yugipedia.com/wiki/Set_Card_Lists:Burst_of_Destiny_(OCG-JP)";//TODO: Remove
-            //txtWikiURL.Text = @"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)";//TODO: Remove
+            txtWikiURL.Text = @"https://yugipedia.com/wiki/Burst_of_Destiny";//TODO: Remove
+            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Burst_of_Destiny_(OCG-JP)");//TODO: Remove
+            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)");//TODO: Remove
             dgvCardList.DataSource = new BindingSource() { DataSource = cardList };
 
             // Add 'quantity' modifier columns
@@ -65,7 +66,8 @@ namespace CardInventory
 
         private async void btnProcess_Click(object sender, EventArgs e)
         {
-            var list = await YugipediaHelper.FetchList(txtWikiURL.Text);
+            string url = YugipediaHelper.SanitizeUrl(txtWikiURL.Text);
+            var list = await YugipediaHelper.FetchList(url);
             if (list != null && list.Count > 0)
             {
                 foreach (Card item in list)

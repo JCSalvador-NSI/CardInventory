@@ -33,13 +33,13 @@ namespace CardInventory
             int dgv_width = dgvCardList.ClientRectangle.Width;
             dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
             dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
-            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.15 : 0.15));
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.17 : 0.15));
             dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.11));
             dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.1));
             dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
             dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
             dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.08));
         }
 

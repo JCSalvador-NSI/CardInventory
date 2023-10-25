@@ -53,7 +53,7 @@ namespace CardInventory
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1009, 539);
+            this.tabControl1.Size = new System.Drawing.Size(1148, 539);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -63,7 +63,7 @@ namespace CardInventory
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1001, 501);
+            this.tabPage1.Size = new System.Drawing.Size(1140, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@ namespace CardInventory
             this.tableLayoutCardList.RowCount = 1;
             this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutCardList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutCardList.Size = new System.Drawing.Size(995, 444);
+            this.tableLayoutCardList.Size = new System.Drawing.Size(1134, 444);
             this.tableLayoutCardList.TabIndex = 1;
             // 
             // dgvCardList
@@ -91,9 +91,11 @@ namespace CardInventory
             this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCardList.Location = new System.Drawing.Point(3, 3);
             this.dgvCardList.Name = "dgvCardList";
-            this.dgvCardList.Size = new System.Drawing.Size(989, 438);
+            this.dgvCardList.Size = new System.Drawing.Size(1128, 438);
             this.dgvCardList.TabIndex = 1;
+            this.dgvCardList.VirtualMode = true;
             this.dgvCardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellContentClick);
+            this.dgvCardList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvCardList_RowPrePaint);
             // 
             // flowWikiURL
             // 
@@ -103,7 +105,7 @@ namespace CardInventory
             this.flowWikiURL.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowWikiURL.Location = new System.Drawing.Point(3, 3);
             this.flowWikiURL.Name = "flowWikiURL";
-            this.flowWikiURL.Size = new System.Drawing.Size(995, 51);
+            this.flowWikiURL.Size = new System.Drawing.Size(1134, 51);
             this.flowWikiURL.TabIndex = 0;
             // 
             // label1
@@ -120,12 +122,12 @@ namespace CardInventory
             // 
             this.txtWikiURL.Location = new System.Drawing.Point(128, 3);
             this.txtWikiURL.Name = "txtWikiURL";
-            this.txtWikiURL.Size = new System.Drawing.Size(690, 31);
+            this.txtWikiURL.Size = new System.Drawing.Size(779, 31);
             this.txtWikiURL.TabIndex = 4;
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(824, 3);
+            this.btnProcess.Location = new System.Drawing.Point(913, 3);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(149, 31);
             this.btnProcess.TabIndex = 5;
@@ -147,7 +149,7 @@ namespace CardInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1009, 539);
+            this.ClientSize = new System.Drawing.Size(1148, 539);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

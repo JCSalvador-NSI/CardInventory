@@ -31,6 +31,7 @@ namespace CardInventory
         private void frmMain_Load(object sender, EventArgs e)
         {
             txtWikiURL.Text = @"https://yugipedia.com/wiki/Set_Card_Lists:Burst_of_Destiny_(OCG-JP)";//TODO: Remove
+            //txtWikiURL.Text = @"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)";//TODO: Remove
             dgvCardList.DataSource = new BindingSource() { DataSource = cardList };
 
             // Add 'quantity' modifier columns
@@ -111,6 +112,71 @@ namespace CardInventory
                     }
                 }
             }   
+        }
+
+        private void dgvCardList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            //UI: Change row color depending on Card type.
+            if (e.RowIndex >= 0)
+            {
+                var card = (Card)dgvCardList.Rows[e.RowIndex].DataBoundItem;
+                if (card != null)
+                {
+                    Color col_fore = dgvCardList.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
+                    Color col_back = dgvCardList.Rows[e.RowIndex].DefaultCellStyle.BackColor;
+                    string card_cat = card.Category.Trim().ToUpper();
+                    
+                    if (card_cat.Contains("MONSTER"))
+                    {
+                        if (card_cat.Contains("PENDULUM"))
+                        {
+                            col_back = Color.ForestGreen;
+                        }
+                        else if (card_cat.Contains("XYZ"))
+                        {
+                            col_back = Color.Black;
+                            col_fore = Color.WhiteSmoke;
+                        }
+                        else if (card_cat.Contains("LINK"))
+                        {
+                            col_back = Color.Blue;
+                            col_fore = Color.WhiteSmoke;
+                        }
+                        else if (card_cat.Contains("SYNCHRO"))
+                        {
+                            col_back = Color.FloralWhite;
+                            col_fore = Color.Black;
+                        }
+                        else if (card_cat.Contains("FUSION"))
+                        {
+                            col_back = Color.MediumVioletRed;
+                        }
+                        else if (card_cat.Contains("RITUAL"))
+                        {
+                            col_back = Color.DeepSkyBlue;
+                        }
+                        else if (card_cat.Contains("EFFECT") || card_cat.Contains("FLIP") || card_cat.Contains("SPIRIT") || card_cat.Contains("GEMINI"))
+                        {
+                            col_back = Color.Coral;
+                        }
+                        else if (card_cat.Contains("NORMAL"))
+                        {
+                            col_back = Color.Khaki;
+                        }
+                    }
+                    else if (card_cat.Contains("SPELL"))
+                    {
+                        col_back = Color.LimeGreen;
+                    }
+                    else if (card_cat.Contains("TRAP"))
+                    {
+                        col_back = Color.IndianRed;
+                    }
+
+                    dgvCardList.Rows[e.RowIndex].DefaultCellStyle.BackColor = col_back;
+                    dgvCardList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = col_fore;
+                }
+            }
         }
     }
 }

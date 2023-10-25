@@ -13,6 +13,17 @@ namespace CardInventory.Utils
         {
             return HttpUtility.HtmlDecode(_input);
         }
+        public static string TrimOnce(this string _input, string _letter)
+        {
+            string result = _input.Trim();
+            if (result.StartsWith(_letter))
+                result = result.Substring(1);
+
+            if (result.EndsWith(_letter))
+                result = result.Substring(0, result.Length - 1);
+
+            return result;
+        }
 
     }
 }

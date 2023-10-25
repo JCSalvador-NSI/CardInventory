@@ -56,7 +56,7 @@ namespace CardInventory.API
                                 {
                                     count++;
                                     string cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
-                                    string cardName = nodeCardBody[INDEX_NAME].InnerText.DecodedHtml();
+                                    string cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
                                     string cardJapName = nodeCardBody[INDEX_JAP_NAME].InnerText;
                                     string cardCategory = nodeCardBody[INDEX_CATEGORY].InnerText;
                                     var nodeRarities = nodeCardBody[INDEX_RARITY].ChildNodes.Where(x => x.Name.Equals("a"));

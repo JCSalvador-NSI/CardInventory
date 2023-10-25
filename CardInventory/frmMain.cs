@@ -18,8 +18,7 @@ namespace CardInventory
         private const string INDEX_QTY_ADD = "colQtyAdd";
         private const string INDEX_QTY_REMOVE = "colQtyRemove";
         private const string INDEX_QTY_SAVE = "colQtySave";
-        private const string INDEX_QTY_MODIFIER = nameof(Card.QtyModifier);
-        private const string INDEX_QTY = nameof(Card.Quantity);
+
         // Local scope variables
         private BindingList<Card> cardList = new BindingList<Card>();
 
@@ -30,17 +29,18 @@ namespace CardInventory
 
         private void ResizeDgvCardList()
         {
+            bool isFull = this.WindowState == FormWindowState.Maximized;
             int dgv_width = dgvCardList.ClientRectangle.Width;
-            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * 0.14);
-            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * 0.21);
-            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * 0.15);
-            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * 0.11);
-            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * 0.1);
-            dgvCardList.Columns[INDEX_QTY].Width = Convert.ToInt32(dgv_width * 0.05);
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].Width = Convert.ToInt32(dgv_width * 0.05);
-            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * 0.05);
-            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * 0.05);
-            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * 0.08);
+            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
+            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.15 : 0.15));
+            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.11));
+            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.1));
+            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.08));
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -72,18 +72,18 @@ namespace CardInventory
             }
 
             // Change header text and alignments
-            dgvCardList.Columns[INDEX_QTY].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.Quantity)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.QtyModifier)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvCardList.Columns[INDEX_QTY].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.Quantity)].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvCardList.Columns[nameof(Card.SetCode)].HeaderText = "Code";
-            dgvCardList.Columns[INDEX_QTY].HeaderText = "#";
-            dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderText = "±";
+            dgvCardList.Columns[nameof(Card.Quantity)].HeaderText = "#";
+            dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderText = "±";
             dgvCardList.Columns[nameof(Card.JapaneseName)].HeaderText = "OCG Name";
 
-            //Increase row height
+            // Increase row height
             dgvCardList.RowTemplate.Height += 4;
 
             //cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));

@@ -28,6 +28,21 @@ namespace CardInventory
             InitializeComponent();
         }
 
+        private void ResizeDgvCardList()
+        {
+            int dgv_width = dgvCardList.ClientRectangle.Width;
+            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * 0.14);
+            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * 0.21);
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * 0.15);
+            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * 0.11);
+            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * 0.1);
+            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * 0.05);
+            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * 0.08);
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             txtWikiURL.Text = @"https://yugipedia.com/wiki/Burst_of_Destiny";//TODO: Remove
@@ -38,9 +53,9 @@ namespace CardInventory
             // Add 'quantity' modifier columns
             var dictQtyModifier = new List<Tuple<string, string, string>>()
             {
-                Tuple.Create(INDEX_QTY_ADD, "Add", "+"),
-                Tuple.Create(INDEX_QTY_REMOVE, "Remove", "-"),
-                Tuple.Create(INDEX_QTY_SAVE, "Action", "SAVE"),
+                Tuple.Create(INDEX_QTY_ADD, "", "+"),
+                Tuple.Create(INDEX_QTY_REMOVE, "", "-"),
+                Tuple.Create(INDEX_QTY_SAVE, "", "SAVE"),
             };
             
             foreach (var pair in dictQtyModifier)
@@ -60,8 +75,16 @@ namespace CardInventory
             dgvCardList.Columns[INDEX_QTY_MODIFIER].HeaderText = "Modifier";
             dgvCardList.Columns[INDEX_QTY_MODIFIER].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[INDEX_QTY].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.SetCode)].HeaderText = "Code";
+            dgvCardList.Columns[nameof(Card.Quantity)].HeaderText = "#";
+            dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderText = "±";
+            dgvCardList.Columns[nameof(Card.JapaneseName)].HeaderText = "OCG Name";
+
+            //Increase row height
+            dgvCardList.RowTemplate.Height += 4;
 
             //cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));
+            ResizeDgvCardList();
         }
 
         private async void btnProcess_Click(object sender, EventArgs e)
@@ -179,6 +202,11 @@ namespace CardInventory
                     dgvCardList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = col_fore;
                 }
             }
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            ResizeDgvCardList();
         }
     }
 }

@@ -91,6 +91,7 @@ namespace CardInventory
             this.dgvCardList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCardList.Location = new System.Drawing.Point(3, 3);
             this.dgvCardList.Name = "dgvCardList";
+            this.dgvCardList.RowHeadersVisible = false;
             this.dgvCardList.Size = new System.Drawing.Size(1128, 438);
             this.dgvCardList.TabIndex = 1;
             this.dgvCardList.VirtualMode = true;
@@ -157,6 +158,7 @@ namespace CardInventory
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutCardList.ResumeLayout(false);

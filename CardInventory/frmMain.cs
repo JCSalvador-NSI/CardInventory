@@ -1,4 +1,5 @@
 ﻿using CardInventory.API;
+using CardInventory.Data;
 using CardInventory.Entity;
 using System;
 using System.Collections.Generic;
@@ -28,48 +29,32 @@ namespace CardInventory
             this.Text = @"TCG Card Inventory";
         }
 
-        private void ResizeDgvCardList()
+        private void DgvInitialize()
         {
-            bool isFull = this.WindowState == FormWindowState.Maximized;
-            int dgv_width = dgvCardList.ClientRectangle.Width;
-            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
-            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
-            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.17 : 0.15));
-            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.11));
-            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.1));
-            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
-            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.08));
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            txtWikiURL.Text = @"https://yugipedia.com/wiki/Burst_of_Destiny";//TODO: Remove
-            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Burst_of_Destiny_(OCG-JP)");//TODO: Remove
-            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)");//TODO: Remove
             dgvCardList.DataSource = new BindingSource() { DataSource = cardList };
 
             // Add 'quantity' modifier columns
-            var dictQtyModifier = new List<Tuple<string, string, string>>()
+            var dictQtyModifier = new List<Tuple<string, string, string, Type>>()
             {
-                Tuple.Create(INDEX_QTY_ADD, "", "+"),
-                Tuple.Create(INDEX_QTY_REMOVE, "", "-"),
-                Tuple.Create(INDEX_QTY_SAVE, "", "SAVE"),
+                Tuple.Create(INDEX_QTY_ADD, "", "+", typeof(DataGridViewButtonColumn)),
+                Tuple.Create(INDEX_QTY_REMOVE, "", "-", typeof(DataGridViewButtonColumn)),
+                Tuple.Create(INDEX_QTY_SAVE, "", "SAVE", typeof(DataGridViewButtonColumn)),
             };
-            
+
             foreach (var pair in dictQtyModifier)
             {
-                DataGridViewButtonColumn btnColumn = new DataGridViewButtonColumn()
+                if (pair.Item4 == typeof(DataGridViewButtonColumn))
                 {
-                    Name = pair.Item1,
-                    HeaderText = pair.Item2,
-                    Text = pair.Item3,
-                    Visible = true,
-                    UseColumnTextForButtonValue = true,
-                };
-                dgvCardList.Columns.Add(btnColumn);
+                    var newColumn = new DataGridViewButtonColumn()
+                    {
+                        Name = pair.Item1,
+                        HeaderText = pair.Item2,
+                        Text = pair.Item3,
+                        Visible = true,
+                        UseColumnTextForButtonValue = true,
+                    };
+                    dgvCardList.Columns.Add(newColumn);
+                }
             }
 
             // Change header text and alignments
@@ -83,12 +68,44 @@ namespace CardInventory
             dgvCardList.Columns[nameof(Card.Quantity)].HeaderText = "#";
             dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderText = "±";
             dgvCardList.Columns[nameof(Card.JapaneseName)].HeaderText = "OCG Name";
+            dgvCardList.Columns[nameof(Card.PriceBought)].HeaderText = "Price Bought";
+
+            // Handle visiblity
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Visible = false;
 
             // Increase row height
             dgvCardList.RowTemplate.Height += 10;
 
             //cardList.Add(new Card("SET-001", "Sample Name", "Jap", "Common", "None"));
             ResizeDgvCardList();
+        }
+        private void ResizeDgvCardList()
+        {
+            bool isFull = this.WindowState == FormWindowState.Maximized;
+            int dgv_width = dgvCardList.ClientRectangle.Width;
+
+            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
+            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.11));
+            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.19 : 0.155));
+            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
+            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.08));
+            dgvCardList.Columns[nameof(Card.PriceBought)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.1 : 0.09));
+
+            //Shares the same space, choose to toggle.
+            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            txtWikiURL.Text = @"https://yugipedia.com/wiki/Burst_of_Destiny";//TODO: Remove
+            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Burst_of_Destiny_(OCG-JP)");//TODO: Remove
+            //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)");//TODO: Remove
+            
+            DgvInitialize();
         }
 
         private async void btnProcess_Click(object sender, EventArgs e)

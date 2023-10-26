@@ -22,6 +22,7 @@ namespace CardInventory.Entity
             Category = _category;
             Quantity = 0;
             QtyModifier = 0;
+            PriceBought = 0m;
         }
 
         public string SetCode { get; set; }
@@ -31,5 +32,6 @@ namespace CardInventory.Entity
         public string Category { get; set; }
         public int Quantity { get; set; }
         public int QtyModifier { get; set; }
+        public decimal PriceBought { get; set; }
     }
 }

@@ -215,7 +215,7 @@ namespace CardInventory
 
         private void btnExportCSV_Click(object sender, EventArgs e)
         {
-
+            ExportFormats.ExportCSV(cardList.ToList());
         }
     }
 }

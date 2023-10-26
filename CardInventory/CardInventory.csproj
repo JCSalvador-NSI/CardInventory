@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\YugipediaHelper.cs" />
+    <Compile Include="Data\ExportFormats.cs" />
     <Compile Include="Entity\Card.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>

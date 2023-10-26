@@ -39,12 +39,15 @@ namespace CardInventory
             this.txtWikiURL = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
             this.tabInventory = new System.Windows.Forms.TabPage();
+            this.tableLayoutOtherControls = new System.Windows.Forms.TableLayoutPanel();
+            this.btnExportCSV = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabCardList.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCardList)).BeginInit();
             this.tableLayoutControls.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutOtherControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -107,6 +110,7 @@ namespace CardInventory
             this.tableLayoutControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutControls.Controls.Add(this.flowLayoutPanel1, 0, 0);
+            this.tableLayoutControls.Controls.Add(this.tableLayoutOtherControls, 1, 1);
             this.tableLayoutControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutControls.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutControls.Name = "tableLayoutControls";
@@ -164,6 +168,36 @@ namespace CardInventory
             this.tabInventory.Text = "Inventory";
             this.tabInventory.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutOtherControls
+            // 
+            this.tableLayoutOtherControls.ColumnCount = 7;
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutOtherControls.Controls.Add(this.btnExportCSV, 0, 0);
+            this.tableLayoutOtherControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutOtherControls.Location = new System.Drawing.Point(3, 49);
+            this.tableLayoutOtherControls.Name = "tableLayoutOtherControls";
+            this.tableLayoutOtherControls.RowCount = 1;
+            this.tableLayoutOtherControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutOtherControls.Size = new System.Drawing.Size(1128, 41);
+            this.tableLayoutOtherControls.TabIndex = 10;
+            // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportCSV.Location = new System.Drawing.Point(3, 3);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(155, 35);
+            this.btnExportCSV.TabIndex = 0;
+            this.btnExportCSV.Text = "Export CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = true;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -184,6 +218,7 @@ namespace CardInventory
             this.tableLayoutControls.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.tableLayoutOtherControls.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -200,5 +235,7 @@ namespace CardInventory
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.TextBox txtWikiURL;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutOtherControls;
+        private System.Windows.Forms.Button btnExportCSV;
     }
 }

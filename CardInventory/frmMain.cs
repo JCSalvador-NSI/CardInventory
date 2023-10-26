@@ -212,5 +212,10 @@ namespace CardInventory
         {
             ResizeDgvCardList();
         }
+
+        private void btnExportCSV_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

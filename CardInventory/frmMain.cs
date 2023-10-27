@@ -143,13 +143,13 @@ namespace CardInventory
                     if (col_qty_add != null && e.ColumnIndex == col_qty_add.Index)
                     {
                         card_data.QtyModifier += 1;
-                        sender_grid.Refresh();
+                        //sender_grid.Refresh();
                         //MessageBox.Show($"Add qty to { card_name }");
                     }
                     else if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
                     {
                         card_data.QtyModifier -= 1;
-                        sender_grid.Refresh();
+                        //sender_grid.Refresh();
                         //MessageBox.Show($"Removed qty to { card_name }");
                     }
                 }

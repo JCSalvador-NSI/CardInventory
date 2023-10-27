@@ -107,6 +107,8 @@ namespace CardInventory
             //txtWikiURL.Text = YugipediaHelper.SanitizeUrl(@"https://yugipedia.com/wiki/Set_Card_Lists:Structure_Deck:_Forest_of_the_Traptrix_(OCG-JP)");//TODO: Remove
             
             DgvInitialize();
+
+            CenterToScreen();
         }
 
         private async void btnProcess_Click(object sender, EventArgs e)

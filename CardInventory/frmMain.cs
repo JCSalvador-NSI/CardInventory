@@ -176,7 +176,7 @@ namespace CardInventory
                     {
                         if (card_cat.Contains("PENDULUM"))
                         {
-                            col_back = Color.ForestGreen;
+                            col_back = Color.LimeGreen;
                         }
                         else if (card_cat.Contains("XYZ"))
                         {
@@ -212,7 +212,8 @@ namespace CardInventory
                     }
                     else if (card_cat.Contains("SPELL"))
                     {
-                        col_back = Color.LimeGreen;
+                        col_fore = Color.White;
+                        col_back = Color.ForestGreen;
                     }
                     else if (card_cat.Contains("TRAP"))
                     {

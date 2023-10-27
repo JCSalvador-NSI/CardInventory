@@ -146,7 +146,7 @@ namespace CardInventory
                         sender_grid.Refresh();
                         //MessageBox.Show($"Add qty to { card_name }");
                     }
-                    if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
+                    else if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
                     {
                         card_data.QtyModifier -= 1;
                         sender_grid.Refresh();

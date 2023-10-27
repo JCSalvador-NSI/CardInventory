@@ -114,6 +114,7 @@ namespace CardInventory
             var list = await YugipediaHelper.FetchList(url);
             if (list != null && list.Count > 0)
             {
+                cardList?.Clear();
                 foreach (Card item in list)
                 {
                     cardList.Add(item);

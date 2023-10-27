@@ -56,6 +56,14 @@ namespace CardInventory
                 }
             }
 
+            // Make some columns static and not editable.
+            dgvCardList.Columns[nameof(Card.Quantity)].ReadOnly = true;
+            dgvCardList.Columns[nameof(Card.Name)].ReadOnly = true;
+            dgvCardList.Columns[nameof(Card.JapaneseName)].ReadOnly = true;
+            dgvCardList.Columns[nameof(Card.Category)].ReadOnly = true;
+            dgvCardList.Columns[nameof(Card.Rarity)].ReadOnly = true;
+            dgvCardList.Columns[nameof(Card.SetCode)].ReadOnly = true;
+
             // Change header text and alignments
             dgvCardList.Columns[nameof(Card.Quantity)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[nameof(Card.QtyModifier)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

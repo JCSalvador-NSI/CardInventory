@@ -85,18 +85,19 @@ namespace CardInventory
             bool isFull = this.WindowState == FormWindowState.Maximized;
             int dgv_width = dgvCardList.ClientRectangle.Width;
 
-            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
+            dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.135));
             dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.15 : 0.135));
             dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.205 : 0.17));
-            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
-            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
+            dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.06 : 0.06));
+            dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.06 : 0.06));
             dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
             dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
             dgvCardList.Columns[nameof(Card.PriceBought)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.1 : 0.09));
 
             //Shares the same space, choose to toggle.
-            dgvCardList.Columns[nameof(Card.Name)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
-            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.23 : 0.21));
+            int card_name_width = Convert.ToInt32(dgv_width * (isFull ? 0.25 : 0.23));
+            dgvCardList.Columns[nameof(Card.Name)].Width = card_name_width;
+            dgvCardList.Columns[nameof(Card.JapaneseName)].Width = card_name_width;
         }
 
         private void frmMain_Load(object sender, EventArgs e)

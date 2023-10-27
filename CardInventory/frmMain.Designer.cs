@@ -148,6 +148,7 @@ namespace CardInventory
             this.txtWikiURL.Name = "txtWikiURL";
             this.txtWikiURL.Size = new System.Drawing.Size(824, 31);
             this.txtWikiURL.TabIndex = 10;
+            this.txtWikiURL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWikiURL_KeyPress);
             // 
             // btnProcess
             // 

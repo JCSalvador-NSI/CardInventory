@@ -142,13 +142,13 @@ namespace CardInventory
                     {
                         card_data.QtyModifier += 1;
                         sender_grid.Refresh();
-                        MessageBox.Show($"Add qty to { card_name }");
+                        //MessageBox.Show($"Add qty to { card_name }");
                     }
                     if (col_qty_remove != null && e.ColumnIndex == col_qty_remove.Index)
                     {
                         card_data.QtyModifier -= 1;
                         sender_grid.Refresh();
-                        MessageBox.Show($"Removed qty to { card_name }");
+                        //MessageBox.Show($"Removed qty to { card_name }");
                     }
                 }
             }   
@@ -249,6 +249,15 @@ namespace CardInventory
                     }
                 }
                 dgvCardList.Refresh();
+            }
+        }
+
+        private void txtWikiURL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnProcess.PerformClick();
+                e.Handled = true;
             }
         }
     }

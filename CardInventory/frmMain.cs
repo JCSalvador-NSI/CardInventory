@@ -1,6 +1,7 @@
 ﻿using CardInventory.API;
 using CardInventory.Data;
 using CardInventory.Entity;
+using CardInventory.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,6 @@ namespace CardInventory
         // Constants
         private const string INDEX_QTY_ADD = "colQtyAdd";
         private const string INDEX_QTY_REMOVE = "colQtyRemove";
-        private const string INDEX_QTY_SAVE = "colQtySave";
 
         // Local scope variables
         private BindingList<Card> cardList = new BindingList<Card>();
@@ -38,7 +38,6 @@ namespace CardInventory
             {
                 Tuple.Create(INDEX_QTY_ADD, "", "+", typeof(DataGridViewButtonColumn)),
                 Tuple.Create(INDEX_QTY_REMOVE, "", "-", typeof(DataGridViewButtonColumn)),
-                Tuple.Create(INDEX_QTY_SAVE, "", "SAVE", typeof(DataGridViewButtonColumn)),
             };
 
             foreach (var pair in dictQtyModifier)
@@ -60,9 +59,11 @@ namespace CardInventory
             // Change header text and alignments
             dgvCardList.Columns[nameof(Card.Quantity)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[nameof(Card.QtyModifier)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.PriceBought)].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvCardList.Columns[nameof(Card.Quantity)].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvCardList.Columns[nameof(Card.QtyModifier)].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCardList.Columns[nameof(Card.PriceBought)].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvCardList.Columns[nameof(Card.SetCode)].HeaderText = "Code";
             dgvCardList.Columns[nameof(Card.Quantity)].HeaderText = "#";
@@ -85,13 +86,12 @@ namespace CardInventory
             int dgv_width = dgvCardList.ClientRectangle.Width;
 
             dgvCardList.Columns[nameof(Card.SetCode)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.14));
-            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.125 : 0.11));
-            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.19 : 0.155));
+            dgvCardList.Columns[nameof(Card.Rarity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.15 : 0.135));
+            dgvCardList.Columns[nameof(Card.Category)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.205 : 0.17));
             dgvCardList.Columns[nameof(Card.Quantity)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
             dgvCardList.Columns[nameof(Card.QtyModifier)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.05 : 0.05));
             dgvCardList.Columns[INDEX_QTY_ADD].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
             dgvCardList.Columns[INDEX_QTY_REMOVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.04 : 0.05));
-            dgvCardList.Columns[INDEX_QTY_SAVE].Width = Convert.ToInt32(dgv_width * (isFull ? 0.08 : 0.08));
             dgvCardList.Columns[nameof(Card.PriceBought)].Width = Convert.ToInt32(dgv_width * (isFull ? 0.1 : 0.09));
 
             //Shares the same space, choose to toggle.
@@ -132,7 +132,6 @@ namespace CardInventory
                 var card_data = (Card)dgvCardList.Rows[e.RowIndex].DataBoundItem;
                 var col_qty_add = dgvCardList.Columns[INDEX_QTY_ADD];
                 var col_qty_remove = dgvCardList.Columns[INDEX_QTY_REMOVE];
-                var col_qty_save = dgvCardList.Columns[INDEX_QTY_SAVE];
 
                 if (card_data != null)
                 {
@@ -149,13 +148,6 @@ namespace CardInventory
                         card_data.QtyModifier -= 1;
                         sender_grid.Refresh();
                         MessageBox.Show($"Removed qty to { card_name }");
-                    }
-                    if (col_qty_save != null && e.ColumnIndex == col_qty_save.Index)
-                    {
-                        card_data.Quantity += card_data.QtyModifier;
-                        card_data.QtyModifier = 0;
-                        sender_grid.Refresh();
-                        MessageBox.Show($"New quantity saved for { card_name }");
                     }
                 }
             }   
@@ -235,6 +227,28 @@ namespace CardInventory
         private void btnExportCSV_Click(object sender, EventArgs e)
         {
             ExportFormats.ExportCSV(cardList.ToList());
+        }
+
+        private void btnApplyChanges_Click(object sender, EventArgs e)
+        {
+            //TODO: Apply all modifiers to current Quantity.
+            if (cardList.IsNotEmpty())
+            {
+                foreach (Card card in cardList)
+                {
+                    if (card != null && card.QtyModifier != 0)
+                    {
+                        int value = card.QtyModifier;
+                        if (value > 0)
+                            card.Quantity += value;
+                        else
+                            card.Quantity -= Math.Abs(value);
+
+                        card.QtyModifier = 0;
+                    }
+                }
+                dgvCardList.Refresh();
+            }
         }
     }
 }

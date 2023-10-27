@@ -38,9 +38,10 @@ namespace CardInventory
             this.label1 = new System.Windows.Forms.Label();
             this.txtWikiURL = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
-            this.tabInventory = new System.Windows.Forms.TabPage();
             this.tableLayoutOtherControls = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportCSV = new System.Windows.Forms.Button();
+            this.btnApplyChanges = new System.Windows.Forms.Button();
+            this.tabInventory = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabCardList.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
@@ -158,16 +159,6 @@ namespace CardInventory
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
-            // tabInventory
-            // 
-            this.tabInventory.Location = new System.Drawing.Point(4, 34);
-            this.tabInventory.Name = "tabInventory";
-            this.tabInventory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInventory.Size = new System.Drawing.Size(1140, 501);
-            this.tabInventory.TabIndex = 1;
-            this.tabInventory.Text = "Inventory";
-            this.tabInventory.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutOtherControls
             // 
             this.tableLayoutOtherControls.ColumnCount = 7;
@@ -178,7 +169,8 @@ namespace CardInventory
             this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutOtherControls.Controls.Add(this.btnExportCSV, 0, 0);
+            this.tableLayoutOtherControls.Controls.Add(this.btnExportCSV, 1, 0);
+            this.tableLayoutOtherControls.Controls.Add(this.btnApplyChanges, 0, 0);
             this.tableLayoutOtherControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutOtherControls.Location = new System.Drawing.Point(3, 49);
             this.tableLayoutOtherControls.Name = "tableLayoutOtherControls";
@@ -190,13 +182,34 @@ namespace CardInventory
             // btnExportCSV
             // 
             this.btnExportCSV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExportCSV.Location = new System.Drawing.Point(3, 3);
+            this.btnExportCSV.Location = new System.Drawing.Point(164, 3);
             this.btnExportCSV.Name = "btnExportCSV";
             this.btnExportCSV.Size = new System.Drawing.Size(155, 35);
             this.btnExportCSV.TabIndex = 0;
             this.btnExportCSV.Text = "Export CSV";
             this.btnExportCSV.UseVisualStyleBackColor = true;
             this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
+            // btnApplyChanges
+            // 
+            this.btnApplyChanges.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnApplyChanges.Location = new System.Drawing.Point(3, 3);
+            this.btnApplyChanges.Name = "btnApplyChanges";
+            this.btnApplyChanges.Size = new System.Drawing.Size(155, 35);
+            this.btnApplyChanges.TabIndex = 1;
+            this.btnApplyChanges.Text = "APPLY";
+            this.btnApplyChanges.UseVisualStyleBackColor = true;
+            this.btnApplyChanges.Click += new System.EventHandler(this.btnApplyChanges_Click);
+            // 
+            // tabInventory
+            // 
+            this.tabInventory.Location = new System.Drawing.Point(4, 34);
+            this.tabInventory.Name = "tabInventory";
+            this.tabInventory.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInventory.Size = new System.Drawing.Size(1140, 501);
+            this.tabInventory.TabIndex = 1;
+            this.tabInventory.Text = "Inventory";
+            this.tabInventory.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -238,5 +251,6 @@ namespace CardInventory
         private System.Windows.Forms.TextBox txtWikiURL;
         private System.Windows.Forms.TableLayoutPanel tableLayoutOtherControls;
         private System.Windows.Forms.Button btnExportCSV;
+        private System.Windows.Forms.Button btnApplyChanges;
     }
 }

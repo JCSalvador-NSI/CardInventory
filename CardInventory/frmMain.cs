@@ -242,7 +242,6 @@ namespace CardInventory
 
         private void btnApplyChanges_Click(object sender, EventArgs e)
         {
-            //TODO: Apply all modifiers to current Quantity.
             if (cardList.IsNotEmpty())
             {
                 foreach (Card card in cardList)
@@ -258,7 +257,7 @@ namespace CardInventory
                         card.QtyModifier = 0;
                     }
                 }
-                dgvCardList.Refresh();
+                //dgvCardList.Refresh();
             }
         }
 

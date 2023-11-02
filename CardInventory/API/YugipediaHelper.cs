@@ -32,6 +32,9 @@ namespace CardInventory.API
             int INDEX_JAP_NAME = 2;
             int INDEX_RARITY = 3;
             int INDEX_CATEGORY = 4;
+            //Index if no JAP name on table.
+            int INDEX_RARITY_NOJP = 2;
+            int INDEX_CATEGORY_NOJP = 3;
             try
             {
                 return await Task.Run( () =>
@@ -55,16 +58,37 @@ namespace CardInventory.API
                                 if (nodeCardBody != null && nodeCardBody.Any())
                                 {
                                     count++;
-                                    string cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
-                                    string cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
-                                    string cardJapName = nodeCardBody[INDEX_JAP_NAME].InnerText;
-                                    string cardCategory = nodeCardBody[INDEX_CATEGORY].InnerText;
-                                    var nodeRarities = nodeCardBody[INDEX_RARITY].ChildNodes.Where(x => x.Name.Equals("a"));
-                                    foreach (var nodeCardRarity in nodeRarities)
+                                    string cardSetcode = "";
+                                    string cardName = "";
+                                    string cardJapName = "";
+                                    string cardCategory = "";
+                                    List<HtmlNode> nodeRarities = null;
+
+                                    if (nodeCardBody.Length >= 5)
                                     {
-                                        string cardRarity = nodeCardRarity.InnerText;
-                                        var newCardItem = new Card(cardSetcode, cardName, cardJapName, cardRarity, cardCategory);
-                                        results.Add(newCardItem);
+                                        //Has both ENG and JAP name
+                                        cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
+                                        cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
+                                        cardJapName = nodeCardBody[INDEX_JAP_NAME].InnerText;
+                                        cardCategory = nodeCardBody[INDEX_CATEGORY].InnerText;
+                                        nodeRarities = nodeCardBody[INDEX_RARITY].ChildNodes.Where(x => x.Name.Equals("a")).ToList();
+                                    }
+                                    else
+                                    {
+                                        cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
+                                        cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
+                                        cardCategory = nodeCardBody[INDEX_CATEGORY_NOJP].InnerText;
+                                        nodeRarities = nodeCardBody[INDEX_RARITY_NOJP].ChildNodes.Where(x => x.Name.Equals("a")).ToList();
+                                    }
+                                    
+                                    if (nodeRarities.IsNotEmpty())
+                                    {
+                                        foreach (var nodeCardRarity in nodeRarities)
+                                        {
+                                            string cardRarity = nodeCardRarity.InnerText;
+                                            var newCardItem = new Card(cardSetcode, cardName, cardJapName, cardRarity, cardCategory);
+                                            results.Add(newCardItem);
+                                        }
                                     }
                                     Logger.PrintDebug($@"
                                         Card Set : { cardSetcode }

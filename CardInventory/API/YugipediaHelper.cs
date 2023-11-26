@@ -58,6 +58,7 @@ namespace CardInventory.API
                                 if (nodeCardBody != null && nodeCardBody.Any())
                                 {
                                     count++;
+                                    string cardUrl = "";
                                     string cardSetcode = "";
                                     string cardName = "";
                                     string cardJapName = "";
@@ -67,6 +68,7 @@ namespace CardInventory.API
                                     if (nodeCardBody.Length >= 5)
                                     {
                                         //Has both ENG and JAP name
+                                        cardUrl = nodeCardBody[INDEX_SETCODE].ChildNodes.Where(x => x.Name.Equals("a")).FirstOrDefault()?.GetAttributeValue("href", "") ?? "";
                                         cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
                                         cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
                                         cardJapName = nodeCardBody[INDEX_JAP_NAME].InnerText;
@@ -75,6 +77,7 @@ namespace CardInventory.API
                                     }
                                     else
                                     {
+                                        cardUrl = nodeCardBody[INDEX_SETCODE].ChildNodes.Where(x => x.Name.Equals("a")).FirstOrDefault()?.GetAttributeValue("href", "") ?? "";
                                         cardSetcode = nodeCardBody[INDEX_SETCODE].InnerText;
                                         cardName = nodeCardBody[INDEX_NAME].InnerText.TrimOnce("\"").DecodedHtml();
                                         cardCategory = nodeCardBody[INDEX_CATEGORY_NOJP].InnerText;
@@ -91,6 +94,7 @@ namespace CardInventory.API
                                         }
                                     }
                                     Logger.PrintDebug($@"
+                                        Card URL : { cardUrl }
                                         Card Set : { cardSetcode }
                                         Card Rarities : { string.Join(", ", nodeRarities.Select(x => x.InnerText)) }
                                     ");

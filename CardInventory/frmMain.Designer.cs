@@ -42,6 +42,7 @@ namespace CardInventory
             this.btnExportCSV = new System.Windows.Forms.Button();
             this.btnApplyChanges = new System.Windows.Forms.Button();
             this.tabInventory = new System.Windows.Forms.TabPage();
+            this.cbCardFormat = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabCardList.SuspendLayout();
             this.tableLayoutCardList.SuspendLayout();
@@ -172,6 +173,7 @@ namespace CardInventory
             this.tableLayoutOtherControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutOtherControls.Controls.Add(this.btnExportCSV, 1, 0);
             this.tableLayoutOtherControls.Controls.Add(this.btnApplyChanges, 0, 0);
+            this.tableLayoutOtherControls.Controls.Add(this.cbCardFormat, 6, 0);
             this.tableLayoutOtherControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutOtherControls.Location = new System.Drawing.Point(3, 49);
             this.tableLayoutOtherControls.Name = "tableLayoutOtherControls";
@@ -211,6 +213,15 @@ namespace CardInventory
             this.tabInventory.TabIndex = 1;
             this.tabInventory.Text = "Inventory";
             this.tabInventory.UseVisualStyleBackColor = true;
+            // 
+            // cbCardFormat
+            // 
+            this.cbCardFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCardFormat.FormattingEnabled = true;
+            this.cbCardFormat.Location = new System.Drawing.Point(969, 3);
+            this.cbCardFormat.Name = "cbCardFormat";
+            this.cbCardFormat.Size = new System.Drawing.Size(121, 33);
+            this.cbCardFormat.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -253,5 +264,6 @@ namespace CardInventory
         private System.Windows.Forms.TableLayoutPanel tableLayoutOtherControls;
         private System.Windows.Forms.Button btnExportCSV;
         private System.Windows.Forms.Button btnApplyChanges;
+        private System.Windows.Forms.ComboBox cbCardFormat;
     }
 }

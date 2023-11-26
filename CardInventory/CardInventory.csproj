@@ -76,6 +76,7 @@
     <Compile Include="Data\DbHelper.cs" />
     <Compile Include="Data\ExportFormats.cs" />
     <Compile Include="Entity\Card.cs" />
+    <Compile Include="Enum\CardFormat.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
